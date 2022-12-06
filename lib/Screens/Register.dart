@@ -1,5 +1,4 @@
-import 'package:vigenesia/Constant/Const.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:vigenesia/Constant/const.dart';
 import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -13,7 +12,10 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String baseurl = url;
+  // Ganti Base URL
+
+  String baseurl =
+      "http://vigenesia.org"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   Future postRegister(
       String nama, String profesi, String email, String password) async {
@@ -27,15 +29,15 @@ class _RegisterState extends State<Register> {
     };
 
     try {
-      final response = await dio.post(
-        "$baseurl/vigenesia/api/registrasi/",
-        data: data,
-        options: Options(headers: {'Content-type': 'application/json'}),
-      );
+      final response = await dio.post("$baseurl/api/registrasi/",
+          data: data,
+          options: Options(headers: {'Content-type': 'application/json'}));
 
       print("Respon -> ${response.data} + ${response.statusCode}");
 
-      return response.data;
+      if (response.statusCode == 200) {
+        return response.data;
+      }
     } catch (e) {
       print("Failed To Load $e");
     }
@@ -59,40 +61,36 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     "Register Your Account",
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 50),
+                  SizedBox(height: 50),
                   FormBuilderTextField(
                     name: "name",
                     controller: nameController,
                     decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Nama"),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "profesi",
                     controller: profesiController,
                     decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Profesi"),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "email",
                     controller: emailController,
                     decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Email"),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
                   FormBuilderTextField(
@@ -100,57 +98,52 @@ class _RegisterState extends State<Register> {
                         true, // <-- Buat bikin setiap inputan jadi bintang " * "
                     name: "password",
                     controller: passwordController,
+
                     decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Password"),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 30,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                      ),
-                      onPressed: () async {
-                        await postRegister(
-                                nameController.text,
-                                profesiController.text,
-                                emailController.text,
-                                passwordController.text)
-                            .then((value) => {
-                                  if (value != null)
-                                    {
-                                      setState(() {
-                                        Navigator.pop(context);
+                        onPressed: () async {
+                          await postRegister(
+                                  nameController.text,
+                                  profesiController.text,
+                                  emailController.text,
+                                  passwordController.text)
+                              .then((value) => {
+                                    if (value != null)
+                                      {
+                                        setState(() {
+                                          Navigator.pop(context);
+                                          Flushbar(
+                                            message: "Berhasil Registrasi",
+                                            duration: Duration(seconds: 2),
+                                            backgroundColor: Colors.greenAccent,
+                                            flushbarPosition:
+                                                FlushbarPosition.TOP,
+                                          ).show(context);
+                                        })
+                                      }
+                                    else if (value == null)
+                                      {
                                         Flushbar(
-                                          title: "Success :",
-                                          message: "Berhasil Registrasi",
-                                          duration: Duration(seconds: 3),
-                                          backgroundColor: Colors.greenAccent,
+                                          message:
+                                              "Check Your Field Before Register",
+                                          duration: Duration(seconds: 5),
+                                          backgroundColor: Colors.redAccent,
                                           flushbarPosition:
                                               FlushbarPosition.TOP,
-                                        ).show(context);
-                                      })
-                                    }
-                                  else if (value == null)
-                                    {
-                                      Flushbar(
-                                        title: "Failed :",
-                                        message:
-                                            "Please check your field before register!",
-                                        duration: const Duration(seconds: 5),
-                                        backgroundColor: Colors.red,
-                                        flushbarPosition: FlushbarPosition.TOP,
-                                      ).show(context)
-                                    }
-                                });
-                      },
-                      child: const Text("Sign Up"),
-                    ),
+                                        ).show(context)
+                                      }
+                                  });
+                        },
+                        child: Text("Daftar")),
                   ),
                 ],
               ),

@@ -1,25 +1,14 @@
-# Vigenesia
-
-UBSI - Vigenesia for null safety - Supported flutter version 3
-
-## Overview
-Mata kuliah Teknologi Web Service menggunakan model pembelajaran berbasis projek.
-
-## Requirement
-- Flutter sdk: '>=2.18.2 <3.0.0'
-- Vs Code
-
-## Installation
-- Clone this project
-```
-git clone https://github.com/rizkiagungid/vigenesia.git
-```
-- Open with your ide
-- Run
-```
-flutter pub get
-flutter run
-```
-
-## Author
-RIZKI AGUNG SENTOSA - UBSI MARGONDA
+This Project Using :
+<br>
+<br>
+This project using : Flutter 3 ( NULL SAFETY )
+<br>
+<br>
+<h1> Package : </h1>
+Font Awesome for Icon <br>
+SharedPreferences for Save Data Login like Cookies <br>
+Form Builder for Created Form <br>
+http or dio for API <br>
+<br>
+<br>
+<p> Dont Forget To Stars this repo or follow my instagram <a href="https://instagram.com/io.velino"> :D

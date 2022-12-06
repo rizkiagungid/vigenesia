@@ -1,27 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:vigenesia/Screens/MainScreens.dart';
+
 import 'Screens/Login.dart';
 
-void main() {
-  runApp(
-    const MyApp(),
-  );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Vigenesia',
+void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.blueGrey,
-        scaffoldBackgroundColor: Colors.white10,
-      ),
-      home: const Login(),
-    );
-  }
-}
+      home:
+          Login(), // <-- Buat Class Baru yg bernama MyScreen di dalam lib bikin folder baru screens isinya MyScreen.dart
+    ));
