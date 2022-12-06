@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:convert';
 import 'package:vigenesia/Models/Login_Model.dart';
 
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -134,15 +135,14 @@ class _LoginState extends State<Login> {
                                             if (value != null)
                                               {
                                                 Navigator.pushReplacement(
-                                                    context,
-                                                    new MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            new MainScreens(
-                                                                nama:
-                                                                    value.nama,
-                                                                idUser: value
-                                                                    .iduser)))
+                                                      context,
+                                                      new MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              new MainScreens(
+                                                                  nama:
+                                                                      value.nama,idUser: value.iduser)))
+                                              
                                               }
                                             else if (value == null)
                                               {

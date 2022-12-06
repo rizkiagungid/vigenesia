@@ -25,15 +25,19 @@ class _MainScreensState extends State<MainScreens> {
   TextEditingController titleController = TextEditingController();
 
   Future<dynamic> sendMotivasi(String isi) async {
-    Map<String, dynamic> body = {"isi_motivasi": isi, "iduser": widget.idUser};
+    Map<String, dynamic> body = {
+      "isi_motivasi": isi,
+      "iduser" : widget.idUser
+    };
 
     try {
-      Response response = await dio.post("$baseurl/api/dev/POSTmotivasi",
-          data: body,
-          options: Options(headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Accept": "application/json"
-          }));
+      Response response =
+          await dio.post("$baseurl/api/dev/POSTmotivasi", data: body, options: Options(
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Accept": "application/json"
+            }
+          ));
 
       return response;
     } catch (e) {
@@ -50,9 +54,10 @@ class _MainScreensState extends State<MainScreens> {
       var getUsersData = response.data as List;
       var listUsers =
           getUsersData.map((i) => MotivasiModel.fromJson(i)).toList();
-      setState(() {
-        listproduk = listUsers;
-      });
+        setState(() {
+          listproduk = listUsers;
+        
+        });
       return listUsers;
     } else {
       throw Exception('Failed to load');
@@ -60,7 +65,7 @@ class _MainScreensState extends State<MainScreens> {
   }
 
   Future<dynamic> deletePost(String id) async {
-    Map<String, dynamic> data = {
+    Map<String,dynamic> data = {
       "id": id,
     };
     var response = await dio.delete('$baseurl/api/dev/DELETEmotivasi',
@@ -71,16 +76,18 @@ class _MainScreensState extends State<MainScreens> {
     return response.data;
   }
 
+
   TextEditingController isiController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     getData().then((value) => {
-          setState(() {
-            listproduk = value;
-          })
-        });
+      setState(() {
+        listproduk = value;
+      
+      })
+    });
   }
 
   @override
@@ -105,7 +112,7 @@ class _MainScreensState extends State<MainScreens> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Selamat Datang  ${widget.nama}",
+                          "Hallo  ${widget.nama}",
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.w500),
                         ),
@@ -136,21 +143,21 @@ class _MainScreensState extends State<MainScreens> {
                       child: ElevatedButton(
                           onPressed: () async {
                             if (isiController.text.isNotEmpty) {
-                              await sendMotivasi(isiController.text.toString())
-                                  .then((value) => {
-                                        if (value != null)
-                                          {
-                                            Flushbar(
-                                              message: "Berhasil Submit",
-                                              duration: Duration(seconds: 2),
-                                              backgroundColor:
-                                                  Colors.greenAccent,
-                                              flushbarPosition:
-                                                  FlushbarPosition.TOP,
-                                            ).show(context),
-                                            getData()
-                                          }
-                                      });
+                                 await sendMotivasi(isiController.text.toString())
+                                .then((value) => {
+                                      if (value != null)
+                                        {
+                                          Flushbar(
+                                            message: "Berhasil Submit",
+                                            duration: Duration(seconds: 2),
+                                            backgroundColor: Colors.greenAccent,
+                                            flushbarPosition:
+                                                FlushbarPosition.TOP,
+                                          ).show(context),
+                                          getData()
+                                        }
+                                    });
+
                             } else {
                               Flushbar(
                                 message: "Isi Motivasi Tidak Boleh Kosong",
@@ -159,6 +166,7 @@ class _MainScreensState extends State<MainScreens> {
                                 flushbarPosition: FlushbarPosition.TOP,
                               ).show(context);
                             }
+                         
                           },
                           child: Text("Submit")),
                     ),
@@ -170,70 +178,73 @@ class _MainScreensState extends State<MainScreens> {
                       child: Icon(Icons.refresh),
                       onPressed: () {
                         setState(() {
-                          getData();
+                          
+                        getData();
                         });
                       },
                     ),
-
+                
                     ListView.builder(
-                        shrinkWrap: true,
-                        physics: ScrollPhysics(),
-                        itemCount: listproduk.length,
-                        itemBuilder: (context, i) {
-                          return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2,
-                                    child: Text(
-                                      listproduk[i].isiMotivasi.toString(),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                Row(
-                                  children: [
-                                    TextButton(
-                                      child: Icon(Icons.settings),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  EditPage(
-                                                      id: listproduk[i].id,
-                                                      isi_motivasi:
-                                                          listproduk[i]
-                                                              .isiMotivasi),
-                                            ));
-                                      },
-                                    ),
-                                    TextButton(
-                                      child: Icon(Icons.delete),
-                                      onPressed: () {
-                                        deletePost(listproduk[i].id!)
-                                            .then((value) => {
-                                                  if (value != null)
-                                                    {
-                                                      Flushbar(
-                                                        message:
-                                                            "Berhasil Delete",
-                                                        duration: Duration(
-                                                            seconds: 2),
-                                                        backgroundColor:
-                                                            Colors.redAccent,
-                                                        flushbarPosition:
-                                                            FlushbarPosition
-                                                                .TOP,
-                                                      ).show(context),
-                                                      getData()
-                                                    }
-                                                });
-                                      },
-                                    )
-                                  ],
-                                )
-                              ]);
-                        })
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      itemCount: listproduk.length,
+                      itemBuilder: (context, i) {
+                        return Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                width: MediaQuery.of(context).size.width / 2,
+                                                child: Text(listproduk[i].isiMotivasi.toString(), overflow: TextOverflow.clip,)),
+                                               Row(
+                                                children: [
+                                                  TextButton(
+                                                    child: Icon(Icons.settings),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                EditPage(
+                                                                    id: listproduk[i].id,
+                                                                    isi_motivasi:
+                                                                        listproduk[i].isiMotivasi),
+                                                          ));
+                                                    },
+                                                  ),
+                                                  TextButton(
+                                                    child: Icon(Icons.delete),
+                                                    onPressed: () {
+                                                      deletePost(listproduk[i].id!)
+                                                          .then((value) => {
+                                                                if (value !=
+                                                                    null)
+                                                                  {
+                                                                    Flushbar(
+                                                                      message:
+                                                                          "Berhasil Delete",
+                                                                      duration: Duration(
+                                                                          seconds:
+                                                                              2),
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .redAccent,
+                                                                      flushbarPosition:
+                                                                          FlushbarPosition
+                                                                              .TOP,
+                                                                    ).show(
+                                                                        context),
+
+                                                                        getData()
+                                                                  }
+                                                              });
+                                                    },
+                                                  )
+                                                ],
+                        )]);
+                      })
+
                   ]),
             ),
           ),
