@@ -173,7 +173,7 @@ class _MainScreensState extends State<MainScreens> {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: _launchUrl,
-                        child: Text('Button'),
+                        child: Text('Home'),
                       ),
                     ),
 
