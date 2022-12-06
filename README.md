@@ -11,4 +11,4 @@ Form Builder for Created Form <br>
 http or dio for API <br>
 <br>
 <br>
-<p> Dont Forget To Stars this repo or follow my instagram <a href="https://instagram.com/io.velino"> :D
+<p> Dont Forget To Stars this repo or follow my instagram <a href="https://instagram.com/rizkiagung.id"> :D
