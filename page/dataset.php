@@ -1,9 +1,9 @@
 <?php 
 $nama1 = "Rizki Agung Sentosa";
 $nama2 = "Mohammad Ridwan Apriyadi";
-$nama3 = "Mohammad Ridwan Apriyadi";
-$nama4 = "Mohammad Ridwan Apriyadi";
-$nama5 = "Mohammad Ridwan Apriyadi";
+$nama3 = "Muhammad Rizky Thio";
+$nama4 = "Marsellino Raja Putra Tambunan";
+$nama5 = "Muhammad Aldi";
 $kelas = "15.5A.01";
 $kampus = "Universitas Bina Sarana Informatika";
 $kelompok = "Kelompok 8 Vigenesia";
