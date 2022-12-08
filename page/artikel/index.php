@@ -97,7 +97,7 @@ Lantas, apa yang bisa kita lakukan agar menjadi lebih bermanfaat bagi orang lain
     Banyak manfaat yang bisa kamu berikan dengan menjadi relawan. Kamu tidak harus menghabiskan seluruh waktumu untuk bekerja cuma-cuma atau mendonasikan seluruh harta yang kamu miliki untuk memberikan manfaat.
     <br/><br/>
     Mengajar secara sukarela beberapa jam per minggu, aktif memberikan sumbangan buku atau pakaian di komunitas, mendonasikan sejumlah uang secara rutin, atau hadir di tengah masyarakat yang terkena bencana sudah cukup memberikan manfaat bagi masyarakat.
-    </p>
+     </p>
   </div>
 </div>
 </body>
