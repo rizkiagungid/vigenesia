@@ -62,6 +62,7 @@ class _LoginState extends State<Login> {
                     colors: [colorcostum.accentblue, colorcostum.accent2blue])),
             height: MediaQuery.of(context).size.height,
             child: Column(
+              textBaseline: TextBaseline.alphabetic,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(

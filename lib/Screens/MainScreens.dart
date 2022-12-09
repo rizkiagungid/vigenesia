@@ -117,6 +117,7 @@ class _MainScreensState extends State<MainScreens> {
                         Text(
                           "Hallo  ${widget.nama}",
                           style: TextStyle(
+                              fontFamily: 'opensans',
                               color: Colors.red,
                               fontSize: 22,
                               fontWeight: FontWeight.w500),
