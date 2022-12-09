@@ -77,7 +77,7 @@ Sementara itu, konektivitas nirkabel dan augmentasi mesin akan sangat maju denga
     Sebaik-baiknya manusia adalah yang bermanfaat bagi orang lain. Karenanya, banyak orang yang ingin menjadi lebih berguna bagi orang lain dalam beberapa hal.
     <br/><br/>
     Untuk menjadi berguna belum tentu harus menjadi yang paling pintar, lebih kompeten, atau paling dermawan, namun yang membuat seseorang sangat berguna adalah sikap mereka. Bukan hanya membantu, tetapi juga membuat orang yang dibantu merasa lebih baik tentang diri mereka sendiri. Selain itu, menjadi berguna bagi orang lain juga bisa memberikan kepuasan batin bagi diri sendiri.
-<br/><br/>
+    <br/><br/>
 Lantas, apa yang bisa kita lakukan agar menjadi lebih bermanfaat bagi orang lain? Yuk, cermati penjelasan berikut!
 <br/><br/>
 <strong>
