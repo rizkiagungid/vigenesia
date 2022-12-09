@@ -3,12 +3,11 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:dio/dio.dart';
+import 'package:vigenesia/Constant/costum-colors.dart';
 import 'MainScreens.dart';
 import 'Register.dart';
 import 'package:flutter/gestures.dart';
-import 'dart:convert';
 import 'package:vigenesia/Models/Login_Model.dart';
-
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -56,13 +55,37 @@ class _LoginState extends State<Login> {
         child: SafeArea(
           // < -- Biar Gak Keluar Area Screen HP
           child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [colorcostum.accentblue, colorcostum.accent2blue])),
             height: MediaQuery.of(context).size.height,
             child: Column(
+              textBaseline: TextBaseline.alphabetic,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Login Area",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Login",
+                      style: TextStyle(
+                          fontSize: 45,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'mustard',
+                          color: Color(0xff97d2fb)),
+                    ),
+                    Text(
+                      " Area",
+                      style: TextStyle(
+                          fontSize: 45,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'mustard',
+                          color: Color(0xff83bcff)),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 50), // <-- Kasih Jarak Tinggi : 50px
                 Center(
@@ -72,27 +95,43 @@ class _LoginState extends State<Login> {
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: Column(
                         children: [
-                          FormBuilderTextField(
-                            name: "email",
-                            controller: emailController,
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 10),
-                                border: OutlineInputBorder(),
-                                labelText: "Email"),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(50, 238, 238, 238),
+                                  border: Border.all(
+                                      color: colorcostum.accent2blue),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8))),
+                              child: TextField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Email"),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          FormBuilderTextField(
-                            obscureText:
-                                true, // <-- Buat bikin setiap inputan jadi bintang " * "
-                            name: "password",
-                            controller: passwordController,
-
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 10),
-                                border: OutlineInputBorder(),
-                                labelText: "Password"),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(50, 238, 238, 238),
+                                  border: Border.all(
+                                      color: colorcostum.accent2blue),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8))),
+                              child: TextField(
+                                obscureText: true,
+                                controller: passwordController,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Password"),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 30,
@@ -125,42 +164,62 @@ class _LoginState extends State<Login> {
                           SizedBox(
                             height: 40,
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: ElevatedButton(
-                                onPressed: () async {
-                                  await postLogin(emailController.text,
-                                          passwordController.text)
-                                      .then((value) => {
-                                            if (value != null)
-                                              {
-                                                Navigator.pushReplacement(
-                                                      context,
-                                                      new MaterialPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              new MainScreens(
-                                                                  nama:
-                                                                      value.nama,idUser: value.iduser)))
-                                              
-                                              }
-                                            else if (value == null)
-                                              {
-                                                Flushbar(
-                                                  message:
-                                                      "Check Your Email / Password",
-                                                  duration:
-                                                      Duration(seconds: 5),
-                                                  backgroundColor:
-                                                      Colors.redAccent,
-                                                  flushbarPosition:
-                                                      FlushbarPosition.TOP,
-                                                ).show(context)
-                                              }
-                                          });
-                                },
-                                child: Text("Sign In")),
-                          ),
+                          InkWell(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 25),
+                                child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: colorcostum.purpleshadow,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: colorcostum.deepblue,
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "SIGN IN",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                              ),
+                              onTap: () async {
+                                await postLogin(emailController.text,
+                                        passwordController.text)
+                                    .then((value) => {
+                                          if (value != null)
+                                            {
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  new MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          new MainScreens(
+                                                              nama: value.nama,
+                                                              idUser: value
+                                                                  .iduser)))
+                                            }
+                                          else if (value == null)
+                                            {
+                                              Flushbar(
+                                                message:
+                                                    "Check Your Email / Password",
+                                                duration: Duration(seconds: 5),
+                                                backgroundColor:
+                                                    Colors.redAccent,
+                                                flushbarPosition:
+                                                    FlushbarPosition.TOP,
+                                              ).show(context)
+                                            }
+                                        });
+                              }),
                         ],
                       ),
                     ),
