@@ -93,6 +93,14 @@ class _MainScreensState extends State<MainScreens> {
         child: SafeArea(
           // < -- Biar Gak Keluar Area Screen HP
           child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                  Color.fromARGB(255, 21, 169, 255),
+                  Color.fromARGB(255, 46, 139, 146)
+                ])),
             child: Padding(
               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
               child: Column(
@@ -109,7 +117,9 @@ class _MainScreensState extends State<MainScreens> {
                         Text(
                           "Hallo  ${widget.nama}",
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w500),
+                              color: Colors.red,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
                         ),
                         TextButton(
                             child: Icon(Icons.logout),
