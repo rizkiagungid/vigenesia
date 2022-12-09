@@ -54,8 +54,21 @@
   <div class="card-body">
     <h5 class="card-title">Tentang Kami</h5>
     <p class="card-text">
-      Vigenesia adalah sebuah digital news yang berisi tentang seputar info perkembangan teknologi, dan memperhatikan bagaimana perubahan industri dengan versi 4.0.
+    Selamat Datang Di Pengembangan Rest API Servis Data Dari Aplikasi Vigenesia (Visi Generasi Indonesia)
     </p>
+    <br>
+   List Anggota Kelompok :
+   <br>
+    - <?php   echo $nama1; ?>
+    <br>
+    - <?php   echo $nama2; ?>
+      <br>
+    - <?php echo $nama3; ?>
+    <br>
+    - <?php  echo $nama4; ?>
+    <br>
+    - <?php  echo $nama5; ?>
+   
   </div>
 </div>
 </body>

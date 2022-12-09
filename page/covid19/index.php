@@ -8,5 +8,7 @@
     </head>
     <body>
     <iframe src="https://ourworldindata.org/grapher/total-cases-covid-19?tab=map" width="100%" height="600px"></iframe>
+        <br>
+        <a name="" id="" class="btn btn-primary" href="../home.php" role="button">Kembali</a>
     </body>
 </html>
