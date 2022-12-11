@@ -1,72 +1,78 @@
+import 'dart:convert';
+
+LoginModels loginModelsFromJson(String str) =>
+    LoginModels.fromJson(json.decode(str));
+String loginModelsToJson(LoginModels data) => json.encode(data.toJson());
+
 class LoginModels {
-  bool? isActive;
-  String? message;
-  LoginData? data;
+  LoginModels({
+    required this.isActive,
+    required this.message,
+    required this.data,
+  });
 
-  LoginModels({this.isActive, this.message, this.data});
+  bool isActive;
+  String message;
+  DataUser data;
 
-  LoginModels.fromJson(Map<String, dynamic> json) {
-    isActive = json['is_active'];
-    message = json['message'];
-    data = json['data'] != null ? new LoginData.fromJson(json['data']) : null;
-  }
+  factory LoginModels.fromJson(Map<String, dynamic> json) => LoginModels(
+        isActive: json['is_active'],
+        message: json['message'],
+        data: DataUser.fromJson(json['data']),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['is_active'] = this.isActive;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        'is_active': isActive,
+        'message': message,
+        'data': data.toJson(),
+      };
 }
 
-class LoginData {
-  String? iduser;
-  String? nama;
-  String? profesi;
-  String? email;
-  String? password;
-  String? roleId;
-  String? isActive;
-  String? tanggalInput;
-  String? modified;
+class DataUser {
+  DataUser({
+    required this.iduser,
+    required this.nama,
+    required this.profesi,
+    required this.email,
+    required this.password,
+    required this.roleId,
+    required this.isActive,
+    required this.tanggalInput,
+    required this.modified,
+  });
 
-  LoginData(
-      {this.iduser,
-      this.nama,
-      this.profesi,
-      this.email,
-      this.password,
-      this.roleId,
-      this.isActive,
-      this.tanggalInput,
-      this.modified});
+  String iduser;
+  String nama;
+  String profesi;
+  String email;
+  String password;
+  String roleId;
+  String isActive;
+  DateTime tanggalInput;
+  String modified;
 
-  LoginData.fromJson(Map<String, dynamic> json) {
-    iduser = json['iduser'];
-    nama = json['nama'];
-    profesi = json['profesi'];
-    email = json['email'];
-    password = json['password'];
-    roleId = json['role_id'];
-    isActive = json['is_active'];
-    tanggalInput = json['tanggal_input'];
-    modified = json['modified'];
-  }
+  factory DataUser.fromJson(Map<String, dynamic> json) => DataUser(
+        iduser: json['iduser'],
+        nama: json['nama'],
+        profesi: json['profesi'],
+        email: json['email'],
+        password: json['password'],
+        roleId: json['role_id'],
+        isActive: json['is_active'],
+        tanggalInput: DateTime.parse(json['tanggal_input']),
+        modified: json['modified'],
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['iduser'] = this.iduser;
-    data['nama'] = this.nama;
-    data['profesi'] = this.profesi;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['role_id'] = this.roleId;
-    data['is_active'] = this.isActive;
-    data['tanggal_input'] = this.tanggalInput;
-    data['modified'] = this.modified;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        'iduser': iduser,
+        'nama': nama,
+        'profesi': profesi,
+        'email': email,
+        'password': password,
+        'role_id': roleId,
+        'is_active': isActive,
+        'tanggal_input':
+            '${tanggalInput.year.toString().padLeft(4, '0')}-${tanggalInput.month.toString().padLeft(2, '0')}-${tanggalInput.day.toString().padLeft(2, '0')}',
+        'modified': modified,
+      };
 }

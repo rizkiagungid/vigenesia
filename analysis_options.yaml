@@ -8,6 +8,7 @@
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
+# include: package:lints/recommended.yaml
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -22,6 +23,14 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
+    - always_declare_return_types
+    - cancel_subscriptions
+    - close_sinks
+    - comment_references
+    - one_member_abstracts
+    - only_throw_errors
+    - package_api_docs
+    - prefer_final_in_for_each
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 

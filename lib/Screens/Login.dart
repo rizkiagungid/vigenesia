@@ -1,47 +1,40 @@
+import 'package:flutter/services.dart';
 import 'package:vigenesia/Constant/const.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:dio/dio.dart';
-import 'package:vigenesia/Constant/costum-colors.dart';
-import 'MainScreens.dart';
-import 'Register.dart';
+import 'main.dart';
+import 'registrasi.dart';
 import 'package:flutter/gestures.dart';
-import 'package:vigenesia/Models/Login_Model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vigenesia/Models/login_model.dart';
+import 'package:vigenesia/Constant/costum-colors.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
-  _LoginState createState() => _LoginState();
+  LoginState createState() => LoginState();
 }
 
-class _LoginState extends State<Login> {
-  String? nama;
-
+class LoginState extends State<Login> {
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-
-  Future<LoginData?> postLogin(String email, String password) async {
-    var dio = Dio();
-    String baseurl =
-        "http://vigenesia.org"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
-
-    Map<String, dynamic> data = {"email": email, "password": password};
-
+  Future postLogin(String email, String password) async {
+    String baseurl = url;
+    Map<String, dynamic> data = {'email': email, 'password': password};
     try {
-      final response = await dio.post("$baseurl/api/login/",
+      final response = await dio.post('$baseurl/api/login',
           data: data,
-          options: Options(headers: {'Content-type': 'application/json'}));
-
-      print("Respon -> ${response.data} + ${response.statusCode}");
-
+          options: Options(headers: {'content-Type': 'application/json'}));
+      print('Respon -> ${response.data} + ${response.statusCode}');
       if (response.statusCode == 200) {
-        final loginModel = LoginData.fromJson(response.data["data"]);
+        final loginModel = LoginModels.fromJson(response.data);
         return loginModel;
       }
     } catch (e) {
-      print("Failed To Load $e");
+      print('Failed To Load $e');
     }
+    return null;
   }
 
   TextEditingController emailController = TextEditingController();
@@ -50,8 +43,15 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorcostum.accentblue,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
-        // <-- Berfungsi Untuk  Bisa Scroll
+        // <-- Berfungsi Untuk Bisa Scroll
         child: SafeArea(
           // < -- Biar Gak Keluar Area Screen HP
           child: Container(
@@ -61,170 +61,155 @@ class _LoginState extends State<Login> {
                     end: Alignment.bottomLeft,
                     colors: [colorcostum.accentblue, colorcostum.accent2blue])),
             height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Login",
-                      style: TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'mustard',
-                          color: Color(0xff97d2fb)),
-                    ),
-                    Text(
-                      " Area",
-                      style: TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'mustard',
-                          color: Color(0xff83bcff)),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 50), // <-- Kasih Jarak Tinggi : 50px
-                Center(
-                  child: Form(
-                    key: _fbKey,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.3,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(50, 238, 238, 238),
-                                  border: Border.all(
-                                      color: colorcostum.accent2blue),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8))),
-                              child: TextField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Email"),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(50, 238, 238, 238),
-                                  border: Border.all(
-                                      color: colorcostum.accent2blue),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8))),
-                              child: TextField(
-                                obscureText: true,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Password"),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Dont Have Account ? ',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                TextSpan(
-                                    text: 'Sign Up',
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Navigator.push(
-                                            context,
-                                            new MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        new Register()));
-                                      },
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.blueAccent,
-                                    )),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          InkWell(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 25),
-                                child: Container(
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: colorcostum.purpleshadow,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: colorcostum.deepblue,
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: Offset(0, 5),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "SIGN IN",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )),
-                              ),
-                              onTap: () async {
-                                await postLogin(emailController.text,
-                                        passwordController.text)
-                                    .then((value) => {
-                                          if (value != null)
-                                            {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  new MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          new MainScreens(
-                                                              nama: value.nama,
-                                                              idUser: value
-                                                                  .iduser)))
-                                            }
-                                          else if (value == null)
-                                            {
-                                              Flushbar(
-                                                message:
-                                                    "Check Your Email / Password",
-                                                duration: Duration(seconds: 5),
-                                                backgroundColor:
-                                                    Colors.redAccent,
-                                                flushbarPosition:
-                                                    FlushbarPosition.TOP,
-                                              ).show(context)
-                                            }
-                                        });
-                              }),
-                        ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 50, bottom: 5),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Vigenesia,',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'mustard',
+                            color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                     ),
                   ),
-                )
-              ],
+                  const Padding(
+                    padding: EdgeInsets.only(left: 50, bottom: 50),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Sign in to continue',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Form(
+                      key: _fbKey,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.3,
+                        child: Column(
+                          children: [
+                            FormBuilderTextField(
+                              name: 'email',
+                              controller: emailController,
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.only(left: 10),
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Email'),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            FormBuilderTextField(
+                              obscureText:
+                                  true, // <--Buat bikin setiap inputan jadi bintang ' * '
+                              name: 'password',
+                              controller: passwordController,
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.only(left: 10),
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Password'),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: 'Dont Have Account? ',
+                                    style: TextStyle(color: Colors.black54),
+                                  ),
+                                  TextSpan(
+                                      text: 'Sign Up',
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        const Register()),
+                                          );
+                                        },
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.blueAccent,
+                                      )),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: ElevatedButton(
+                                  onPressed: () async {
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    await postLogin(emailController.text,
+                                            passwordController.text)
+                                        .then((value) => {
+                                              if (value != null)
+                                                {
+                                                  setState(() {
+                                                    var id = value.data.iduser;
+                                                    var name = value.data.nama;
+                                                    prefs.setString('email',
+                                                        value.data.email);
+                                                    prefs.setString('nama',
+                                                        value.data.nama);
+                                                    prefs.setString('id',
+                                                        value.data.iduser);
+                                                    Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            MainScreens(
+                                                          nama: name,
+                                                          idUser: id,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  })
+                                                }
+                                              else if (value == null)
+                                                {
+                                                  Flushbar(
+                                                    message:
+                                                        'Check Your Email / Password',
+                                                    duration: const Duration(
+                                                        seconds: 5),
+                                                    backgroundColor:
+                                                        Colors.redAccent,
+                                                    flushbarPosition:
+                                                        FlushbarPosition.TOP,
+                                                  ).show(context)
+                                                }
+                                            });
+                                  },
+                                  child: const Text('Sign In')),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

@@ -58,21 +58,21 @@ include "dataset.php";
       <img src="./site/assets/img/3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption">
         <h5><?php echo $kelompok ?></h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <p>Hai ! Selamat datang di Halaman kami.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="./site/assets/img/1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <h5>Jangan Lupa kunjungi ya</h5>
+        <p>Tentang Projek pengembangan Vigenesia.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="./site/assets/img/2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <h5>Kolaborasi Vigenesia</h5>
+        <p>Yuk jadi pengembang Vigenesia kunjungi Github ku ya !.</p>
       </div>
     </div>
   </div>
@@ -96,8 +96,20 @@ include "dataset.php";
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">Selamat Datang di Halaman Home.</h2>
-        <p class="lead">Yuk cobain fiture-fiture disini sekarang !</p>
+        <h2 class="featurette-heading">Selamat Datang di Halaman kami.</h2>
+        <p class="lead">Pengembangan nya apa saja sih ?</p>
+        <li>Design Halaman Register</li>
+        <li>Design Halaman Login</li>
+        <li>Design Home</li>
+        <li>Menambahkan beberapa Asset pada project:</li>
+        <li>Menambahkan Package pada project:</li>
+        <li>Membuat Navbar</li>
+        <li>Membuat Halaman Page:</li>
+        <li>Membuat Halaman Profile</li>
+        <li>Membuat Halaman Motivasi</li>
+        <li>Membuat Halaman API VIGENESIA</li>
+        <li>Fix Bug:</li>
+        
       </div>
       <div class="col-md-5">
       <img src="./site/assets/img/2.jpg" class="d-block w-100" alt="...">
