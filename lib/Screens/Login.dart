@@ -71,7 +71,7 @@ class LoginState extends State<Login> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Vigenesia,',
+                        'Vigenesia',
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w500,

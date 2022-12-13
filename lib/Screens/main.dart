@@ -107,7 +107,7 @@ class MainScreensState extends State<MainScreens> {
 }
 
 _launchUrl() async {
-  const url = 'https://google.com';
+  const url = 'http://vigenesia.rasxmedia.com/';
   if (await canLaunch(url)) {
     await launch(url);
   } else {

@@ -1,9 +1,8 @@
-import 'dart:html';
-
+// import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Screens/login.dart';
+// import 'Screens/login.dart';
 import 'Screens/main.dart';
 import 'dart:async';
 import 'splashscreen.dart';
