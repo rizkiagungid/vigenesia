@@ -37,7 +37,7 @@ include "dataset.php";
           <a class="nav-link" href="./covid19/" style="color: #fff;">Data Covid19</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./report-apk/" style="color: #fff;">Report Apk</a>
+          <a class="nav-link" href="./api/" style="color: #fff;">API</a>
         </li>
       </ul>
       <!-- <form class="d-flex" role="search">
@@ -101,14 +101,14 @@ include "dataset.php";
         <li>Design Halaman Register</li>
         <li>Design Halaman Login</li>
         <li>Design Home</li>
-        <li>Menambahkan beberapa Asset pada project:</li>
-        <li>Menambahkan Package pada project:</li>
+        <li>Menambahkan beberapa Asset pada project</li>
+        <li>Menambahkan Package pada Vigenesia</li>
         <li>Membuat Navbar</li>
-        <li>Membuat Halaman Page:</li>
+        <li>Membuat Halaman Page</li>
         <li>Membuat Halaman Profile</li>
         <li>Membuat Halaman Motivasi</li>
         <li>Membuat Halaman API VIGENESIA</li>
-        <li>Fix Bug:</li>
+        <li>Fix Bug: Build.gradle</li>
         
       </div>
       <div class="col-md-5">

@@ -13,10 +13,10 @@
         include "../dataset.php";
         ?>
 
-        <!-- navbar -->
+               <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="../" style="color: #fff;">
+    <a class="navbar-brand" href="#" style="color: #fff;">
         Vigenesia
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../" style="color: #fff;">Home</a>
+          <a class="nav-link active" aria-current="page" href="#" style="color: #fff;">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color: #fff;">About us</a>
+          <a class="nav-link" href="../about-us/" style="color: #fff;">About us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../artikel/" style="color: #fff;">Artikel</a>
@@ -38,7 +38,7 @@
           <a class="nav-link" href="../covid19/" style="color: #fff;">Data Covid19</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../report-apk/" style="color: #fff;">Report Apk</a>
+          <a class="nav-link" href="../api/" style="color: #fff;">API</a>
         </li>
       </ul>
       <!-- <form class="d-flex" role="search">

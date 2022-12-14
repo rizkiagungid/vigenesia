@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:vigenesia/Screens/drawer.dart';
 import 'package:vigenesia/Screens/home.dart';
 import 'package:vigenesia/Constant/const.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'login.dart';
 
@@ -103,14 +102,5 @@ class MainScreensState extends State<MainScreens> {
         ],
       ),
     );
-  }
-}
-
-_launchUrl() async {
-  const url = 'http://vigenesia.rasxmedia.com/';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }
